@@ -24,16 +24,14 @@ class LimitSizeStream extends stream.Transform {
       this.push(buffer_tail);
 
       // только потом выкидываем ошибку
-      throw new LimitExceededError();
+      //throw new LimitExceededError();
+      callback(new LimitExceededError());
     } else {
       this.transfered += len;
-      this.push(chunk);
+      //this.push(chunk);
+      callback(null, chunk);
     }
-    callback();
-  }
-
-  _final(callback) {
-    callback();
+    
   }
 
 }
