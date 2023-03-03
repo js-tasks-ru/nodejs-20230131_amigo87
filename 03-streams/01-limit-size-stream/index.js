@@ -11,3 +11,8 @@ limitedStream.write('hello'); // 'hello' - это 5 байт, поэтому э�
 setTimeout(() => {
   limitedStream.write('world'); // ошибка LimitExceeded! в файле осталось только hello
 }, 10);
+
+limitedStream.on('error', (err) => {
+  limitedStream.destroy();
+  outStream.end();
+});
