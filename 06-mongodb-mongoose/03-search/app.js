@@ -2,6 +2,9 @@ const Koa = require('koa');
 const Router = require('koa-router');
 const {productsByQuery} = require('./controllers/products');
 
+/* const {fixtures} = require('./fixtures/testData')
+fixtures() */
+
 const app = new Koa();
 
 app.use(async (ctx, next) => {
