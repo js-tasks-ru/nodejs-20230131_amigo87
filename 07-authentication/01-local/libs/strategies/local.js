@@ -6,26 +6,22 @@ module.exports = new LocalStrategy(
     async function(email, password, done) {
 
       if (false == /^[-.\w]+@([\w-]+\.)+[\w-]{2,12}$/.test(email)){
-        done(null, false, 'Введён некорректный email')
-        return
+        return done(null, false, 'Введён некорректный email')        
       }
       if(password.length == 0){
-        done(null, false, 'Вы забыли заполнить пароль')
-        return
+        return done(null, false, 'Вы забыли заполнить пароль')        
       }
       const user = await User.findOne({email: email})
 
       if (!user){
-        done(null, false, 'Нет такого пользователя')
-        return
+        return done(null, false, 'Нет такого пользователя')        
       }
       const result = await user.checkPassword(password)
 
       if (!result){
-        done(null, false, 'Неверный пароль')
-        return
+        return done(null, false, 'Неверный пароль')        
       }
 
-      done(null, user);
+      return done(null, user);
     },
 );
