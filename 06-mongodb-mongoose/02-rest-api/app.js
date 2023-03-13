@@ -3,6 +3,8 @@ const Router = require('koa-router');
 const {productsBySubcategory, productList, productById} = require('./controllers/products');
 const {categoryList} = require('./controllers/categories');
 
+const { createTestData } = require('./fixtures/testData');
+
 const app = new Koa();
 
 app.use(async (ctx, next) => {
@@ -27,5 +29,10 @@ router.get('/products', productsBySubcategory, productList);
 router.get('/products/:id', productById);
 
 app.use(router.routes());
+
+if (process.env.NODE_ENV !== 'test'){
+  createTestData()
+}
+
 
 module.exports = app;
