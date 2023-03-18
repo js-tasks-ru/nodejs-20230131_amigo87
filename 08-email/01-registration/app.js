@@ -18,6 +18,7 @@ app.use(require('koa-bodyparser')());
 app.use(require('koa-static')(path.join(__dirname, 'public')));
 
 app.use(async (ctx, next) => {
+  
   try {
     await next();
   } catch (err) {
