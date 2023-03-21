@@ -8,8 +8,8 @@ const htmlToText = require('nodemailer-html-to-text').htmlToText;
 const SMTPTransport = require('nodemailer-smtp-transport');
 const StubTransport = require('nodemailer-stub-transport');
 
-const transportEngine = process.env.NODE_ENV === 'test' ?
-  new StubTransport() :
+const transportEngine = /* process.env.NODE_ENV === 'test' ? */
+  new StubTransport() /* :
   new SMTPTransport({
     host: 'smtp.gmail.com',
     port: 465,
@@ -18,7 +18,7 @@ const transportEngine = process.env.NODE_ENV === 'test' ?
       user: config.mailer.user,
       pass: config.mailer.password,
     },
-  });
+  }); */
 
 const transport = nodemailer.createTransport(transportEngine);
 

@@ -311,7 +311,7 @@ describe('email/order', () => {
           'Authorization': `Bearer ${token}`,
         },
       });
-
+      
       expect(status, 'статус код ответа должен быть 400').to.be.equal(400);
       expect(data, 'тело ответа должно содержать объект с ошибками').to.have.property('errors');
       expect(data.errors, 'products - ожидается получить ObjectId').to.have.property('product')
